@@ -1,0 +1,1 @@
+{{range service "mysql"}}{{.Address}} {{.Port}} {{end}}

@@ -1,0 +1,7 @@
+<?php
+{{range service "mysql"}}
+define('DB_HOST', '{{.Address}}');
+{{else}}
+define('DB_HOST', 'mysql');
+{{end}}
+?>

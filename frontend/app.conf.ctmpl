@@ -1,0 +1,41 @@
+upstream fpm {
+        least_conn;
+        {{range service "php-fpm"}}server {{.Address}}:{{.Port}} max_fails=3 fail_timeout=60 weight=1;
+        {{else}}server 127.0.0.1:65535;{{end}}
+}
+
+server {
+	listen   80;
+	root /var/www/html;
+	index index.php index.html index.htm;
+	server_name domain.example.com;
+	sendfile off;
+	location / {
+		try_files $uri $uri/ /index.php?q=$uri&$args;
+	}
+	location /doc/ {
+		alias /usr/share/doc/;
+		autoindex on;
+		allow 127.0.0.1;
+		allow ::1;
+		deny all;
+	}
+
+	error_page 500 502 503 504 /50x.html;
+	location = /50x.html {
+		root /usr/share/nginx/www;
+	}
+
+	location ~ \.php$ {
+                try_files $uri =404;
+		fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass fpm;
+		fastcgi_index index.php;
+		include fastcgi_params;
+	}
+
+	location ~ /\.ht {
+		deny all;
+	}
+}
