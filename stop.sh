@@ -10,6 +10,6 @@ cd $HERE/db
 make stop
 rm -rf mnt/*
 
-docker stop registrator swarm-worker swarm-mgr consul
-docker rm registrator swarm-worker swarm-mgr consul
+docker stop registrator swarm-worker swarm-mgr consul docker-proxy
+docker rm registrator swarm-worker swarm-mgr consul docker-proxy
 

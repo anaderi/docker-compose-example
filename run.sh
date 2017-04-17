@@ -14,6 +14,7 @@ function halt {
 if [ ! -d $HERE/mnt ] ; then mkdir $HERE/mnt ; fi
 
 cd $HERE/swarm_primary
+./00-run_dockerproxy.sh
 ./01-run_consul.sh
 ./02-run_swarm_mgr.sh
 ./03-run_swarm_wrk.sh
