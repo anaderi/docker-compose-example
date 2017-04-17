@@ -1,5 +1,6 @@
+source util.sh
 docker run --restart=unless-stopped -d \
     --name swarm-worker \
     swarm join \
-    --advertise=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:2375 \
-    consul://`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:8500/
+    --advertise=$IP:2375 \
+    consul://$IP:8500/
