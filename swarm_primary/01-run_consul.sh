@@ -1,6 +1,6 @@
-BASE=/home/cms/edu-docker-compose
+HERE=$(cd $(dirname $0) ; pwd)
 
-docker run --restart=unless-stopped -d -h `hostname` --name consul -v $BASE/mnt:/data  \
+docker run --restart=unless-stopped -d -h `hostname` --name consul -v $HERE/mnt:/data  \
     -p `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:8300:8300 \
     -p `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:8301:8301 \
     -p `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:8301:8301/udp \
