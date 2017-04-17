@@ -1,4 +1,5 @@
-BASE=/home/cms/edu-docker-compose
+BASE=${PWD}/..
+
 run:
 	docker run -p 80:80 -v ${BASE}/mnt/storage/www:/var/www/html -d --name balancer --link consul:consul \
  -l "SERVICE_NAME=balancer" -l "SERVICE_TAGS=balancer" \

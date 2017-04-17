@@ -1,4 +1,5 @@
-BASE=/home/cms/edu-docker-compose
+BASE=${PWD}/..
+
 run:
 	docker run --name fpm.0 -d -v ${BASE}/mnt/storage/www:/var/www/html \
   -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress \

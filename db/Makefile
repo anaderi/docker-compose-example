@@ -1,4 +1,5 @@
-BASE=/home/cms/edu-docker-compose
+BASE=${PWD}/..
+
 run:
 	docker run --name mysql-master.0 -v ${BASE}/mnt/volumes/master:/var/lib/mysql \
   -e MYSQL_ROOT_PASSWORD=rootpass -e MYSQL_USER=wordpress \
