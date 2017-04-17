@@ -1,4 +1,4 @@
-HERE=$(cd $(dirname $0) ; pwd)
+HERE=$(cd $(dirname $0)/.. ; pwd)
 
 docker run --restart=unless-stopped -d -h `hostname` --name consul -v $HERE/mnt:/data  \
     -p `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`:8300:8300 \
